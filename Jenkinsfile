@@ -45,10 +45,11 @@ environment {
         stage('Build') { 
             steps { 
                 withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
-                    script{
-                    withEnv(['DOCKER_BUILDKIT=1'])
+                    script {
+                    withEnv(['DOCKER_BUILDKIT=1']) {
                     app =  docker.build("asg")
-                     }
+                    }
+                    }
                 }
             }
         }
