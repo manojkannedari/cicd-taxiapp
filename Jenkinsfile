@@ -50,6 +50,7 @@ environment {
                     '''
                 withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
                     script{
+                    export DOCKER_BUILDKIT=1
                     app =  docker.build("asg")
                      }
                 }
