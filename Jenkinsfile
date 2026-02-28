@@ -44,10 +44,6 @@ environment {
         
         stage('Build') { 
             steps { 
-                sh '''
-                    sudo usermod -aG docker $USER
-                    newgrp docker
-                    '''
                 withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
                     script{
                     export DOCKER_BUILDKIT=1
