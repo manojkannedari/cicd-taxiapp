@@ -44,6 +44,10 @@ environment {
         
         stage('Build') { 
             steps { 
+                sh '''
+                    sudo usermod -aG docker $USER
+                    newgrp docker
+                    '''
                 withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
                     script{
                     app =  docker.build("asg")
