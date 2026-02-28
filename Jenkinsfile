@@ -74,16 +74,14 @@ environment {
         }
       }
     }
-     stage (" Docker Publish "){
-        steps {
-            script {
-               echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'jfrog-cred'){
-                    app.push()
-                }    
-               echo '<--------------- Docker Publish Ended --------------->'  
+	stage('Push') {
+            steps {
+                script{
+                    docker.withRegistry('https://348342704792.dkr.ecr.us-east-1.amazonaws.com/asg', 'ecr:us-east-1:aws-credentials') {
+                    app.push("latest")                                                                        
+                    }
+                }
             }
-        }
-    }
+    	}
 }
 }
