@@ -46,7 +46,7 @@ environment {
             steps { 
                 withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
                     script{
-                    export DOCKER_BUILDKIT=1
+                    withEnv(['DOCKER_BUILDKIT=1'])
                     app =  docker.build("asg")
                      }
                 }
